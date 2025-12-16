@@ -171,7 +171,7 @@ footer {
 }
 
 .participants-list li:before {
-  content: "•";
+  content: "";
   position: absolute;
   left: 0;
   color: #4CAF50;
@@ -184,4 +184,76 @@ footer {
 
 .participants-list li.no-participants:before {
   content: "";
+}
+
+.participants-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 0 !important;
+  padding-left: 0 !important;
+  cursor: grab;
+  transition: all 0.2s ease;
+}
+
+.participants-list li:active {
+  cursor: grabbing;
+}
+
+.participants-list li.dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+.participants-list li.drag-over {
+  background-color: #e3f2fd;
+  border-left: 3px solid #2196f3;
+  padding-left: 8px !important;
+  margin: 2px 0;
+  border-radius: 3px;
+}
+
+.participant-email {
+  flex: 1;
+}
+
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 1.2em;
+  transition: all 0.3s ease;
+  display: inline-block;
+  line-height: 1;
+  transform: scale(1);
+}
+
+.delete-btn:hover {
+  opacity: 0.7;
+  background-color: transparent;
+  transform: scale(1.2) rotate(10deg);
+}
+
+.delete-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes slideOutFade {
+  0% {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg);
+    max-height: 100%;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px) rotateY(20deg);
+    max-height: 0;
+  }
+}
+
+.participants-list li.deleting {
+  animation: slideOutFade 0.3s ease forwards;
+  overflow: hidden;
 }
